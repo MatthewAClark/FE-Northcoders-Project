@@ -1,4 +1,7 @@
-const api_url = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_URL : process.env.REACT_APP_API_URL  = 'http://localhost:3000'
+const api_url = process.env.NODE_ENV === 'production' ? 'https://aqueous-shelf-21128.herokuapp.com' : process.env.REACT_APP_API_URL  = 'http://localhost:3000'
+
+
+
 
 const fetchUrl = { 'stations' : `${api_url}/api/db/stations/`, 
                    'allSchedules' : `${api_url}/api/db/schedules/all`,
