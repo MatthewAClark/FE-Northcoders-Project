@@ -148,8 +148,8 @@ class DepartureBoard extends Component {
 
 
             return (
-                <div class="">
-                    <h2 class="title is-2">Departures</h2>
+                <div className="">
+                    <h2 className="title is-2">Departures</h2>
                     {this.state.routes.map((route, i) => {
 
                         return (

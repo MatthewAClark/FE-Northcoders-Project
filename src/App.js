@@ -29,13 +29,13 @@ class App extends Component {
         this.setState({ stations: body })
       })
       .catch(err => {throw err})
-    fetch(fetchUrl.allSchedules)
-      .then(res => {
-        return res.json();
-      })
-      .then(body => {
-        this.setState({ schedules: body })
-      })
+    // fetch(fetchUrl.allSchedules)
+    //   .then(res => {
+    //     return res.json();
+    //   })
+    //   .then(body => {
+    //     this.setState({ schedules: body })
+    //   })
 
   }
 
