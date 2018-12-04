@@ -6,7 +6,7 @@ class HomePage extends Component {
         return (
             <div className="panel">
          <DepartureBoard stations={this.props.stations}/>
-         <p>To add new schedules, select the 'Station Management' tab and follow the instructions</p>
+         <p>This is where all the departures for the next two hours are displayed for your convenience. To manage the departures or add more, select the 'Station Management' tab and you will then be presented the options to add or remove schedules</p>
         </div>
         ) 
     }

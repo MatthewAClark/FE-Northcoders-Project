@@ -118,8 +118,6 @@ class DepartureBoard extends Component {
                         Promise.all(liveStatus)
                             .then(result => {
 
-                                console.log(newStatus)
-                                console.log(liveData)
                                 liveData.forEach((data, i) => {
                                     newStatus[i].departures = data
                                 })

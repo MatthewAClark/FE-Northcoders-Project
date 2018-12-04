@@ -18,7 +18,7 @@ class StationManagement extends Component {
 
 
         // fetch new station from transportAPI
-        console.log(fetchUrl.liveStation, this.state.station_name)
+       // console.log(fetchUrl.liveStation, this.state.station_name)
         fetch(`${fetchUrl.liveStation}/${this.state.station_name}`)
             .then(res => {
                 return res.json();

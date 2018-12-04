@@ -33,10 +33,8 @@ props.deleteSchedule(i)}}>Delete Schedule</button></td>
             }))
     } else {
         return (<div>
-            <p>No schedules found for this route. To add schedules, select 'New Times' and fill in the following: </p>
-            <p>Departure time - the times from when trains depart at this station</p>
-            <p>Offset - How many hours:minutes ahead to look</p>
-            <p>Date - The date at which to look</p>
+            <p>There are currently no schedules set up that are due to depart in the next two hours. Please see 'Station Management' for more details.</p>
+            
         </div>)
     }
 }
