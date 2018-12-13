@@ -163,7 +163,7 @@ class DepartureBoard extends Component {
 
         } else
             return (<div>
-                <p>There are no train schedules set up that are due to depart at this time of day</p></div>)
+                <p>No schedules for the next two hours</p></div>)
 
 
     }

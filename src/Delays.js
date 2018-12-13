@@ -29,13 +29,16 @@ class Delays extends Component {
                 body.forEach((elem, i) => {
 
                     if (!train_operator[elem.train_operator]) {
-                        train_operator[elem.train_operator] = {'operator': elem.train_operator, 'late': 0, 'on_time': 0, 'cancelled': 0, 'early': 0 }
+                        train_operator[elem.train_operator] = {'operator': elem.train_operator, 'late': 0, 'on_time': 0, 'cancelled': 0, 'early': 0, 'total': 0 }
                     }
 
 
                     if (!routes[elem.route_id]) {
-                        routes[elem.route_id] = {'route_id': elem.route_id, 'start_id': elem.starting_station, 'finish_id': elem.finish_station, 'late': 0, 'on_time': 0, 'cancelled': 0, 'early': 0 }
+                        routes[elem.route_id] = {'route_id': elem.route_id, 'start_id': elem.starting_station, 'finish_id': elem.finish_station, 'late': 0, 'on_time': 0, 'cancelled': 0, 'early': 0, 'total': 0 }
                     }
+
+                    train_operator[elem.train_operator].total++
+                    routes[elem.route_id].total++
 
                     if (elem.train_status === "LATE") {
                         train_operator[elem.train_operator].late++
@@ -89,7 +92,7 @@ class Delays extends Component {
                     return (
                         <tr key={i}>
                             
-                     <td>{operator.operator}</td><td>{operator.early}</td><td>{operator.on_time}</td><td>{operator.late}</td><td>{operator.cancelled}</td>
+                     <td>{operator.operator}</td><td>{Math.round((operator.early/operator.total)*100)}%</td><td>{Math.round((operator.on_time/operator.total)*100)}%</td><td>{Math.round((operator.late/operator.total)*100)}%</td><td>{Math.round((operator.cancelled/operator.total)*100)}%</td><td>{operator.total}</td>
                      </tr>
                     )
                 })}
@@ -114,7 +117,7 @@ class Delays extends Component {
                         
                         <tr key={i}>
                            
-                     <td>{this.props.stations.find(station => (route.start_id === station.station_id)).station_name} to<br/>{this.props.stations.find(station => (route.finish_id === station.station_id)).station_name}</td><td>{route.early}</td><td>{route.on_time}</td><td>{route.late}</td><td>{route.cancelled}</td>
+                     <td>{this.props.stations.find(station => (route.start_id === station.station_id)).station_name} to<br/>{this.props.stations.find(station => (route.finish_id === station.station_id)).station_name}</td><td>{Math.round((route.early/route.total)*100)}%</td><td>{Math.round((route.on_time/route.total)*100)}%</td><td>{Math.round((route.late/route.total)*100)}%</td><td>{Math.round((route.cancelled/route.total)*100)}%</td><td>{route.total}</td>
                      </tr>
                     )}
                 })}

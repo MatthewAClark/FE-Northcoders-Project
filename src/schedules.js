@@ -202,7 +202,6 @@ addSchedule = (index) => {
             </tbody>
                 </table>
             <AddNewTimes handleDate={this.handleDate} handleFromDepartureTime={this.handleFromDepartureTime} handleToDepartureTime={this.handleToDepartureTime} createSchedule={this.createSchedule} buttonClicked={this.state.buttonClicked} toggleButton={this.toggleButton}/>
-            
             </div>
         )
     }

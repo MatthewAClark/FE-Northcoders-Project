@@ -14,7 +14,7 @@ const ScheduleItems = (props) => {
               return (
                        <tr key={i}>
                           
-                <td>{schedule.departure_time}</td><td>{schedule.train_arrival_destination}</td><td><button onClick={() => props.addSchedule(i)}>Add Schedule</button></td>
+                <td>{schedule.departure_time}</td><td>{schedule.departure_origin}</td><td>{schedule.train_arrival_destination}</td><td><button onClick={() => props.addSchedule(i)}>Add Schedule</button></td>
                 </tr>
                 
                 
