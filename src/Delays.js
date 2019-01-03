@@ -1,141 +1,103 @@
-import React, { Component } from "react";
-//import StationHeader from "./stationHeader" 
-import fetchUrl from './apiConfig'
+import React from "react";
 
-class Delays extends Component {
+    const Delays = (props) => {
 
-    state = {
-
-        delays: [],
-        train_operator: [],
-        routes: []
-    }
-
-
-    componentDidMount() {
-        // Fetch the train performances
-        fetch(fetchUrl.delaySchedules)
-
-            .then(res => {
-                
-                if (res.status === 404) return []
-                return res.json();
-            })
-            .then(body => {
-              
-
-                const train_operator = {}
-                const routes = {}
-                body.forEach((elem, i) => {
-
-                    if (!train_operator[elem.train_operator]) {
-                        train_operator[elem.train_operator] = {'operator': elem.train_operator, 'late': 0, 'on_time': 0, 'cancelled': 0, 'early': 0, 'total': 0 }
-                    }
-
-
-                    if (!routes[elem.route_id]) {
-                        routes[elem.route_id] = {'route_id': elem.route_id, 'start_id': elem.starting_station, 'finish_id': elem.finish_station, 'late': 0, 'on_time': 0, 'cancelled': 0, 'early': 0, 'total': 0 }
-                    }
-
-                    train_operator[elem.train_operator].total++
-                    routes[elem.route_id].total++
-
-                    if (elem.train_status === "LATE") {
-                        train_operator[elem.train_operator].late++
-                        routes[elem.route_id].late++ 
-                    }
-                    if (elem.train_status === "ON TIME") {
-                        train_operator[elem.train_operator].on_time++
-                        routes[elem.route_id].on_time++
-                    }
-                    if (elem.train_status === "CANCELLED") {
-                        train_operator[elem.train_operator].cancelled++
-                        routes[elem.route_id].cancelled++
-                    }
-
-                    if (elem.train_status === "EARLY") {
-                        train_operator[elem.train_operator].early++
-                        routes[elem.route_id].early++
-                    }
-
-                })
-
-
-
-                this.setState({
-                    delays: body,
-                    train_operator: Object.values(train_operator),
-                    routes: Object.values(routes)
-                    
-                })
-
-
-            })
-    }
-
-
-    render() {
-      
         return (
+
             <div className="delays">
-                <h2 class="title is-2">Train Performance</h2>
+                <h2 className="title is-2">Performance Summary</h2>
 
                 <h4 className="title is-4">Train operator</h4>
 
-<table className="table">
-    <tbody>
-        <tr>
-            <td></td><td>Early</td><td>On Time</td><td>Late</td><td>Cancelled</td>
-            </tr>
-                {this.state.train_operator.map((operator, i) => {
+                <table className="table">
+                    <tbody>
 
-                    return (
-                        <tr key={i}>
-                            
-                     <td>{operator.operator}</td><td>{Math.round((operator.early/operator.total)*100)}%</td><td>{Math.round((operator.on_time/operator.total)*100)}%</td><td>{Math.round((operator.late/operator.total)*100)}%</td><td>{Math.round((operator.cancelled/operator.total)*100)}%</td><td>{operator.total}</td>
-                     </tr>
-                    )
-                })}
+                        <tr><td></td><td>On Time %</td><td>Cancelled %</td><td>Late %</td>
 
-        
+                        </tr>
 
-            </tbody>
-            </table>
+                        {props.operatorPerformance.map((operator, i) => {
+
+                            return (
+                                <tr key={i}>
+
+                                    <td>{operator.operator}</td>
+                                    <td>{operator.on_time_percent}</td>
+                                    <td>{operator.cancelled_percent}</td>
+
+                                    <td> <table><tbody>
+                                        <tr><td>5 Minutes or less</td><td>6 to 15 Minutes</td><td>15 to 30 Minutes</td><td>Over 30 Minutes</td><td>Late Total</td></tr>
+
+                                        <tr>
+
+                                            <td>{operator.late1_percent}</td>
+                                            <td>{operator.late2_percent}</td>
+                                            <td>{operator.late3_percent}</td>
+                                            <td>{operator.late4_percent}</td>
+                                            <td>{operator.late_percent}</td>
+
+                                        </tr>
+                                    </tbody></table>
 
 
-<h4 className="title is-4">Train route</h4>
+                                    </td>
 
-<table className="table">
-    <tbody>
-        <tr>
-            <td></td><td>Early</td><td>On Time</td><td>Late</td><td>Cancelled</td>
-            </tr>
-                {this.state.routes.map((route, i) => {
+                                </tr>
+                            )
 
-            if(this.props.stations.length > 0) {
-                    return (
-                        
-                        <tr key={i}>
-                           
-                     <td>{this.props.stations.find(station => (route.start_id === station.station_id)).station_name} to<br/>{this.props.stations.find(station => (route.finish_id === station.station_id)).station_name}</td><td>{Math.round((route.early/route.total)*100)}%</td><td>{Math.round((route.on_time/route.total)*100)}%</td><td>{Math.round((route.late/route.total)*100)}%</td><td>{Math.round((route.cancelled/route.total)*100)}%</td><td>{route.total}</td>
-                     </tr>
-                    )}
-                })}
-      
+                        })}
 
-            </tbody>
-            </table>
+                    </tbody></table>
 
+                <h4 className="title is-4">Train Routes</h4>
+
+                <table className="table">
+                    <tbody>
+
+                        <tr><td></td><td>On Time %</td><td>Cancelled %</td><td>Late %</td>
+
+                        </tr>
+
+                        {props.routePerformance.map((route, i) => {
+                         
+                            return (
+                                <tr key={i}>
+
+                                    <td>{route.route_start_station} to {route.route_end_station}</td>
+                                    <td>{route.on_time_percent}</td>
+                                    <td>{route.cancelled_percent}</td>
+
+                                    <td> <table><tbody>
+                                        <tr>
+                                            <td>5 Minutes or less</td><td>6 to 15 Minutes</td><td>15 to 30 Minutes</td><td>Over 30 Minutes</td><td>Late Total</td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>{route.late1_percent}</td>
+                                                <td>{route.late2_percent}</td>
+                                                <td>{route.late3_percent}</td>
+                                                <td>{route.late4_percent}</td>
+                                                <td>{route.late_percent}</td>
+
+                                            </tr>
+                                        </tbody></table>
+
+
+                                    </td>
+
+
+                                </tr>
+                            )
+
+                        })}
+
+                    </tbody></table>
 
             </div>
 
-
-
-            )
+        )
     }
-}
-
-
 
 
 export default Delays

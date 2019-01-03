@@ -7,6 +7,11 @@ table {
     width: 100%;
 } */
 
+td {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
 .departureItem {
     background-color: lightblue;
 }

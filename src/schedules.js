@@ -122,8 +122,6 @@ editHeader = (text, index) => {
   //  newSchedules[index].stationName = text
     this.setState({
         lists: newSchedules
-    }, () => {
-        console.log('state updated')
     })
 }
 
@@ -148,7 +146,7 @@ deleteSchedule = (i) => {
       method: 'DELETE'
     })
        .then(res => res.json()).then(result => {
-           console.log(result)
+           
 const newList = this.state.schedules.map((elem, index) => {
     if ((index === i)) {
         elem.newData = true
@@ -160,7 +158,7 @@ this.setState({
 })
          })
        .catch(console.log)
-    console.log(this.state.schedules[i])
+    
     
   }
 
@@ -192,11 +190,18 @@ addSchedule = (index) => {
 
 
     render() {
+      
         return( 
+           
             <div style={{display:'flex', flexFlow: 'row wrap'}}> 
-            <table class="table">
+            <table className="table">
                    <tbody>
-                       <ScheduleItems schedules={this.state.schedules} deleteSchedule={this.deleteSchedule} addSchedule={this.addSchedule}/>
+                       <tr>
+                           <td>
+                               Time
+                           </td><td>Destination</td><td>On Time %</td>
+                           </tr>
+                       <ScheduleItems route={this.props.route} schedules={this.state.schedules} deleteSchedule={this.deleteSchedule} addSchedule={this.addSchedule} routePerformance={this.props.routePerformance} schedulePerformance={this.props.schedulePerformance}/>
             
 
             </tbody>

@@ -3,7 +3,6 @@ import DepartureItem from './departureItem'
 import fetchUrl from './apiConfig'
 
 
-//const DepartureBoard = (props) => {
 class DepartureBoard extends Component {
 
     state = {
@@ -95,9 +94,7 @@ class DepartureBoard extends Component {
                                             return res.json();
                                         })
                                         .then(live => {
-
-
-                                            // liveData.push(
+                  
                                              liveData[i] =   route.departures.map(elem => {
                                                     const elem2 = live.departures.all.find(status => {
 
@@ -116,20 +113,16 @@ class DepartureBoard extends Component {
 
 
                         Promise.all(liveStatus)
-                            .then(result => {
+                            .then(() => {
 
                                 liveData.forEach((data, i) => {
                                     newStatus[i].departures = data
                                 })
-                                console.log(newStatus)
+                               
                                 this.setState({
                                     routes: newStatus
                                 })
                             })
-
-
-
-
 
 
                     })
@@ -141,9 +134,8 @@ class DepartureBoard extends Component {
 
 
     render() {
-     //   console.log(this.state.routes)
+   
         if (this.state.routes.length > 0) {
-
 
             return (
                 <div className="">
@@ -153,7 +145,7 @@ class DepartureBoard extends Component {
                         return (
                             <div key={i}>
 
-                                <DepartureItem route={route} />
+                                <DepartureItem route={route} routePerformance={this.props.routePerformance} schedulePerformance={this.props.schedulePerformance}/>
                             </div>
                         )
                     })}
@@ -165,11 +157,7 @@ class DepartureBoard extends Component {
             return (<div>
                 <p>No schedules for the next two hours</p></div>)
 
-
     }
 }
-
-
-
 
 export default DepartureBoard;

@@ -3,10 +3,9 @@ import NewStation from './newStation';
 
 
 import fetchUrl from './apiConfig';
-import { BrowserRouter, Route, Link } from "react-router-dom";
 import StationItems from "./stationItems";
 
-//const StationManagement = (props) => {
+
 class StationManagement extends Component {
 
     state = {
@@ -84,9 +83,9 @@ class StationManagement extends Component {
 
     render() {
         return (
-                <div class="card">
-                    <h1 class="title is-2">Station Management</h1>
-                    <h3 class="title is-3">Stations</h3>
+                <div className="card">
+                    <h1 className="title is-2">Station Management</h1>
+                    <h3 className="title is-3">Stations</h3>
                 
                 <StationItems stations={this.props.stations} deleteStation={this.props.deleteStation}/>
 

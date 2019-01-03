@@ -1,31 +1,37 @@
 import React from "react";
-import NewStation from './newStation';
 
-import fetchUrl from './apiConfig';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const StationItems = (props) => {
     if (props.stations.length > 0) {
         return (
-            props.stations.map((station, i) => {
-                return (
-                    <div class="tag is-large" key={i}>
-                        <div  >
-                            <Link to={`/stations/${station.station_id}`}>{station.station_name}</Link>
+            <table className='table'>
+                <tbody>
+                    {props.stations.map((station, i) => {
+                        return (
+                            <tr className="tag is-large" key={i}>
 
 
-                        </div><button onClick={(event) => {
+                                <td>
+                                    <Link to={`/stations/${station.station_id}`}>{station.station_name}</Link>
+                                </td>
+                                <td>
+                                    <button onClick={(event) => {
 
+                                        props.deleteStation(i)
+                                    }}>Delete Station</button>
+                                </td>
 
+                            </tr>
 
+                        )
 
-                            props.deleteStation(i)
-                        }}>Delete Station</button>
-                    </div>)
+                    }
+                    )}
+                </tbody>
+            </table >
 
-            }
-            )
         )
     } else {
         return (<div>

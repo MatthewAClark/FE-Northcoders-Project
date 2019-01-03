@@ -1,24 +1,16 @@
 import React, { Component } from "react";
-//import StationHeader from "./stationHeader" 
-
-
-
-
 
 class LiveDepartures extends Component {
 
   state = {
 
-    departures: ['test']
+    departures: ['']
   }
 
 
   componentDidMount() {
 
     //Display all stations from db on first load
-
-
-    
 
 
     // fetch current time
@@ -39,8 +31,7 @@ class LiveDepartures extends Component {
         return res.json();
       })
       .then(body => {
-        console.log(body)
-        
+       
         fetch(`http://localhost:3000/api/live/stationtimes/${this.props.station_code}`)
         .then(res => {
           
@@ -53,18 +44,16 @@ class LiveDepartures extends Component {
           // loop through departures
           body.forEach( (dep, index) => {
             const liveDeparture = live.departures.all.find(status => {
-              console.log('train studd', status.train_uid, dep.train_uid)
+
               return (status.train_uid === dep.train_uid)
             })
             const departureUpdate = this.state.departures
             departureUpdate[index].status = liveDeparture.status
             this.setState({departures: departureUpdate})
-            // if(liveDeparture.status === 'LATE') {
-
-            // }
+           
 
           })
-        //  console.log('departure data',depData)
+       
         })
         .catch(err => console.log(err))
         
@@ -77,7 +66,7 @@ class LiveDepartures extends Component {
 
 
   render() {
-    //const station = (props) => {
+   
     return (
       <div className="station">
       <table>
@@ -103,7 +92,7 @@ class LiveDepartures extends Component {
 
           }<p>{this.props.station_name}</p>
 
-          {/* <StationHeader editButton={this.editButton} editClicked={this.state.editClicked} stationName={this.props.stationName} editHeader={this.props.editHeader} index={this.props.index}/> */}
+          
       </div>
         );
       }
