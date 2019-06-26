@@ -122,6 +122,8 @@ editHeader = (text, index) => {
   //  newSchedules[index].stationName = text
     this.setState({
         lists: newSchedules
+    }, () => {
+        console.log('state updated')
     })
 }
 
@@ -146,7 +148,7 @@ deleteSchedule = (i) => {
       method: 'DELETE'
     })
        .then(res => res.json()).then(result => {
-           
+           console.log(result)
 const newList = this.state.schedules.map((elem, index) => {
     if ((index === i)) {
         elem.newData = true
@@ -158,7 +160,7 @@ this.setState({
 })
          })
        .catch(console.log)
-    
+    console.log(this.state.schedules[i])
     
   }
 
@@ -190,23 +192,24 @@ addSchedule = (index) => {
 
 
     render() {
-      
         return( 
-           
-            <div style={{display:'flex', flexFlow: 'row wrap'}}> 
-            <table className="table">
+            //
+            <div> 
+            <div  className="mt-3">
+            <table className="table bg-dark text-white">
                    <tbody>
-                       <tr>
-                           <td>
-                               Time
-                           </td><td>Destination</td><td>On Time %</td>
-                           </tr>
-                       <ScheduleItems route={this.props.route} schedules={this.state.schedules} deleteSchedule={this.deleteSchedule} addSchedule={this.addSchedule} routePerformance={this.props.routePerformance} schedulePerformance={this.props.schedulePerformance}/>
+                       <ScheduleItems schedules={this.state.schedules} deleteSchedule={this.deleteSchedule} addSchedule={this.addSchedule}/>
             
 
             </tbody>
                 </table>
-            <AddNewTimes handleDate={this.handleDate} handleFromDepartureTime={this.handleFromDepartureTime} handleToDepartureTime={this.handleToDepartureTime} createSchedule={this.createSchedule} buttonClicked={this.state.buttonClicked} toggleButton={this.toggleButton}/>
+            </div>
+           
+            <div className="mt-3">
+            <AddNewTimes  handleDate={this.handleDate} handleFromDepartureTime={this.handleFromDepartureTime} handleToDepartureTime={this.handleToDepartureTime} createSchedule={this.createSchedule} buttonClicked={this.state.buttonClicked} toggleButton={this.toggleButton}/>
+            </div>
+            
+            
             </div>
         )
     }

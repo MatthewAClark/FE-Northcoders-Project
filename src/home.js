@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import DepartureBoard from './departureBoard'
 
-const HomePage = (props) => {
-
+class HomePage extends Component {
+    render () {
         return (
+        //     <div className="panel">
+                
             
-            <div className="panel">
 
-         <DepartureBoard stations={props.stations} routePerformance={props.routePerformance} schedulePerformance={props.schedulePerformance}/>
-         <p>This is where all the departures for the next two hours are displayed for your convenience. To manage the departures or add more, select the 'Station Management' tab and you will then be presented the options to add or remove schedules</p>
+        
+        // </div>
+
+        <div className="container home">
+<div className="jumbotron opacity bg-dark text-white">
+  <h1 className="display-4">Live Departures</h1>
+  {/* <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> */}
+  <hr className="my-4"/>
+    <DepartureBoard stations={this.props.stations}/>
+        
+  <a className="btn btn-primary btn-lg" href="/stations" role="button">Add More</a>
+
         </div>
+       
+</div>
         ) 
     }
-
+}
 
 export default HomePage 

@@ -7,11 +7,38 @@ table {
     width: 100%;
 } */
 
-td {
-    border: 2px solid black;
-    padding: 10px;
-    margin: 10px;
-}
-.departureItem {
+/* .departureItem {
     background-color: lightblue;
+} */
+
+.scheduleCard {
+    height: 800px;
+    overflow-y: scroll;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url("images/train.png");
+    height: 100%;
+}
+
+.centre {
+    margin:auto;
+}
+
+
+.home {
+    padding:  5%;
+}
+
+.opacity {
+    /* padding: 10%; */
+    opacity: 0.8;
+}
+
+.liveTime {
+    text-align: center;
 }

@@ -203,74 +203,11 @@ class App extends Component {
   render() {
     
     return (
-
-      // < BrowserRouter>
-//         <div>
-//           <header>
-
-//             {/* Navbar section */}
-           
-//             <section className="is-dark">
-            
-             
-                  
-//                   <nav className="navbar bg-dark">
-//                   <div className="container">
-//                     <Link className="navbar-item bg-dark text-white" to="/">Home</Link>
-//                     <Link className="navbar-item bg-dark text-white" to="/stations">Station Management</Link>
-//                     <Link className="navbar-item bg-dark text-white" to="/delays">Train Performance</Link>
-//                     </div>
-//                   </nav>
-                  
-//             </section>
-           
-//           </header>
-
-//           {/*Home page which displays departures*/}
-
-//           <Route exact path="/" render={(props) => (
-//             <HomePage {...props} stations={this.state.stations} />)} />
-
-//           <Route exact path="/stations" render={(props) => (
-//             <StationManagement {...props} stations={this.state.stations} addToDOMStation={this.addToDOMStation} deleteStation={this.deleteStation} />)} />
-
-//           <Route path="/stations/:station_id/schedules/" render={(props) => (<Schedules route_id={this.props.route.route_id} station_code={this.state.station.station_code} dest_station_code={this.props.route.station_code} />)} />
-
-//           <Route path="/delays/" render={(props) => (<Delays stations={this.state.stations} />)} />
-
-
-
-//           <Route exact path="/stations/:station_id" render={(props) => (
-//             <Station {...props} stations={this.state.stations} />)} />
-
-// <footer className="bg-dark"></footer>
-//         </div>
-       
-//       </ BrowserRouter>
-
       < BrowserRouter>
         <div>
           <header>
 
-{/* Navbar section */}
-           
-                        <section className="is-dark">
-            
-             
-                  
-                               <nav className="navbar bg-dark">
-                               <div className="container">
-                                 <Link className="navbar-item bg-dark text-white" to="/">Home</Link>
-                                 <Link className="navbar-item bg-dark text-white" to="/stations">Station Management</Link>
-                                 <Link className="navbar-item bg-dark text-white" to="/delays">Train Performance</Link>
-                                 </div>
-                               </nav>
-                              
-                         </section>
-                       
-                       </header>
-
-            {/* Navbar section
+            {/* Navbar section */}
             <section className="hero is-primary">
               <div className="hero-body">
                 <div className="container">
@@ -283,7 +220,7 @@ class App extends Component {
                 </div>
               </div>
             </section>
-          </header> */}
+          </header>
 
           {/*Home page which displays departures*/}
 

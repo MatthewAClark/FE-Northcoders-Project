@@ -3,9 +3,10 @@ import NewStation from './newStation';
 
 
 import fetchUrl from './apiConfig';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import StationItems from "./stationItems";
 
-
+//const StationManagement = (props) => {
 class StationManagement extends Component {
 
     state = {
@@ -17,7 +18,7 @@ class StationManagement extends Component {
 
 
         // fetch new station from transportAPI
-       // console.log(fetchUrl.liveStation, this.state.station_name)
+        console.log(fetchUrl.liveStation, this.state.station_name)
         fetch(`${fetchUrl.liveStation}/${this.state.station_name}`)
             .then(res => {
                 return res.json();
@@ -83,9 +84,10 @@ class StationManagement extends Component {
 
     render() {
         return (
-                <div className="card">
-                    <h1 className="title is-2">Station Management</h1>
-                    <h3 className="title is-3">Stations</h3>
+            <div className="container home">
+ <div className="card pl-3 pt-3 pb-3 pr-3 opacity bg-dark">
+                    <h1 className="title is-2  text-white">Station Management</h1>
+                    <h3 className="title is-3  text-white">Stations</h3>
                 
                 <StationItems stations={this.props.stations} deleteStation={this.props.deleteStation}/>
 
@@ -93,8 +95,14 @@ class StationManagement extends Component {
                     <div>
                     <NewStation handleStationName={this.handleStationName} createStation={this.createStation} buttonClicked={this.state.buttonClicked} toggleButton={this.toggleButton} />
 </div>
-<p>This is a list of railway stations that have been set up and two or more stations are required in order to set a route between them. To set a route, select a station and this will present you with further options for the routes.</p>
+
                 </div>
+<div className="bg-dark opacity card mt-5 text-white">
+<p>This is a list of railway stations that have been set up and two or more stations are required in order to set a route between them. To set a route, select a station and this will present you with further options for the routes.</p>
+</div>
+               
+            </div>
+               
            
         )
     }

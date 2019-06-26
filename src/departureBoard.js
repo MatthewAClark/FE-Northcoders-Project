@@ -3,6 +3,7 @@ import DepartureItem from './departureItem'
 import fetchUrl from './apiConfig'
 
 
+//const DepartureBoard = (props) => {
 class DepartureBoard extends Component {
 
     state = {
@@ -94,7 +95,9 @@ class DepartureBoard extends Component {
                                             return res.json();
                                         })
                                         .then(live => {
-                  
+
+
+                                            // liveData.push(
                                              liveData[i] =   route.departures.map(elem => {
                                                     const elem2 = live.departures.all.find(status => {
 
@@ -113,16 +116,22 @@ class DepartureBoard extends Component {
 
 
                         Promise.all(liveStatus)
-                            .then(() => {
+                            .then(result => {
 
+                                console.log(newStatus)
+                                console.log(liveData)
                                 liveData.forEach((data, i) => {
                                     newStatus[i].departures = data
                                 })
-                               
+                                console.log(newStatus)
                                 this.setState({
                                     routes: newStatus
                                 })
                             })
+
+
+
+
 
 
                     })
@@ -134,30 +143,43 @@ class DepartureBoard extends Component {
 
 
     render() {
-   
+     //   console.log(this.state.routes)
         if (this.state.routes.length > 0) {
 
+
             return (
-                <div className="">
-                    <h2 className="title is-2">Departures</h2>
+                <table className="table bg-dark text-white">
+                    <tbody>
                     {this.state.routes.map((route, i) => {
 
-                        return (
-                            <div key={i}>
+return (
 
-                                <DepartureItem route={route} routePerformance={this.props.routePerformance} schedulePerformance={this.props.schedulePerformance}/>
-                            </div>
-                        )
-                    })}
 
-                </div>
+    
+    // <table className="table" key={i}>
+
+        <DepartureItem route={route} key={i}/>
+    // </table>
+)
+})}
+                    </tbody>
+
+
+                   
+             
+
+                </table>
             )
 
         } else
             return (<div>
-                <p>No schedules for the next two hours</p></div>)
+                <p>There are no train schedules set up that are due to depart at this time of day</p></div>)
+
 
     }
 }
+
+
+
 
 export default DepartureBoard;

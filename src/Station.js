@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import Schedules from "./schedules";
 import AddRoute from './addRoute';
 import fetchUrl from './apiConfig';
 import RouteItems from './RouteItems';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+
 
 
 class Station extends Component {
@@ -48,7 +51,7 @@ class Station extends Component {
         this.setState({
           routes: newRoutes
         })
-       
+        console.log(this.state.routes)
       })
 
   }
@@ -68,6 +71,8 @@ class Station extends Component {
     newStations[index].stationName = text
     this.setState({
       lists: newStations
+    }, () => {
+      console.log('state updated')
     })
   }
 
@@ -104,7 +109,6 @@ class Station extends Component {
 
 
   componentDidMount() {
-    
     fetch(`${fetchUrl.stations}/${this.props.match.params.station_id}`)
       .then(res => {
         return res.json();
@@ -116,12 +120,20 @@ class Station extends Component {
       })
    
 
+    
+  
+
+  
+ 
+  // console.log(this.state.station)
+
+
     fetch(`${fetchUrl.stationStart}/${this.props.match.params.station_id}`)
       .then(res => {
         return res.json();
       })
       .then(data => {
-      
+        console.log(data)
         this.setState({
           routes: data
         })
@@ -130,19 +142,36 @@ class Station extends Component {
   }
 
 
+  
+
+
+
+
   render() {
    
-  
+     
+     
     return (
-      <div>
-        <h1 className="title is-2">{this.state.station.station_name}</h1><h2>{}</h2>
+      <div className="container">
+        <div className="card bg-dark opacity mt-5 p-2 scheduleCard mb-5">
+        <div className="row">
+          
+        <h1 className="col-10 title is-2 text-white">{this.state.station.station_name}</h1>
+       
+        <AddRoute className="col-1" stations={this.props.stations} currentStation={this.state.station.station_id} handleStationId={this.handleStationId} createRoute={this.createRoute} buttonClicked={this.state.buttonClicked} toggleButton={this.toggleButton} />
+        </div>
+       
    
 
-<RouteItems routes={this.state.routes} deleteRoute={this.deleteRoute} station_code={this.state.station.station_code} routePerformance={this.props.routePerformance} schedulePerformance={this.props.schedulePerformance}/>.
-
-
-        <AddRoute stations={this.props.stations} currentStation={this.state.station.station_id} handleStationId={this.handleStationId} createRoute={this.createRoute} buttonClicked={this.state.buttonClicked} toggleButton={this.toggleButton} />
-
+   <RouteItems routes={this.state.routes} deleteRoute={this.deleteRoute} station_code={this.state.station.station_code}/>.
+   
+   
+   
+           
+          
+   
+        </div>
+       
       </div>
     )
   }
