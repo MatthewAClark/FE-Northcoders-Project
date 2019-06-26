@@ -270,22 +270,7 @@ class App extends Component {
                        
                        </header>
 
-            {/* Navbar section
-            <section className="hero is-primary">
-              <div className="hero-body">
-                <div className="container">
-                  <h1 className="title">Personal Train App</h1>
-                  <nav className="navbar">
-                    <Link className="navbar-item" to="/">Home</Link>
-                    <Link className="navbar-item" to="/stations">Station Management</Link>
-                    <Link className="navbar-item" to="/delays">Train Performance</Link>
-                  </nav>
-                </div>
-              </div>
-            </section>
-          </header> */}
-
-          {/*Home page which displays departures*/}
+           
 
           <Route exact path="/" render={(props) => (
             <HomePage {...props} stations={this.state.stations} routePerformance={this.state.routePerformance} schedulePerformance={this.state.schedulePerformance} />)} />

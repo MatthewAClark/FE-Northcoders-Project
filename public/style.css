@@ -11,18 +11,24 @@ table {
     background-color: lightblue;
 } */
 
-.scheduleCard {
+/* .scheduleCard {
     height: 800px;
     overflow-y: scroll;
-}
+} */
 
 html {
     height: 100%;
 }
 
+
 body {
     background-image: url("images/train.png");
-    height: 100%;
+    min-height: 100%;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+background-size: cover;
+   
 }
 
 .centre {

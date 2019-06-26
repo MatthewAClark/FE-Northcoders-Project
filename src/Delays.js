@@ -3,13 +3,13 @@ import React from "react";
     const Delays = (props) => {
 
         return (
-
-            <div className="delays">
-                <h2 className="title is-2">Performance Summary</h2>
+<div className="container">
+<div className="card mt-5 bg-dark opacity text-white">
+                <h2 className="title text-white is-2">Performance Summary</h2>
 
                 
 
-                <table className="table">
+                <table className="table bg-dark text-white">
                     <tbody>
                     
 
@@ -83,6 +83,8 @@ import React from "react";
                     </tbody></table>
 
             </div>
+</div>
+           
 
         )
     }

@@ -152,7 +152,7 @@ class Station extends Component {
      
      
     return (
-      <div className="container">
+      <div className="container mb-5 pb-5">
         <div className="card bg-dark opacity mt-5 p-2 scheduleCard mb-5">
         <div className="row">
           
